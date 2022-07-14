@@ -1,4 +1,12 @@
+import { useState } from "react";
+
 const PizzaItem = () => {
+  const [counter, setCounter] = useState(0);
+
+  const addPizza = () => {
+    console.log(1);
+    setCounter(counter + 1);
+  };
   return (
     <div className="pizza-block">
       <img
@@ -33,8 +41,8 @@ const PizzaItem = () => {
               fill="white"
             />
           </svg>
-          <span>Добавить</span>
-          <i>2</i>
+          <span onClick={addPizza}>Добавить</span>
+          <i>{counter}</i>
         </div>
       </div>
     </div>
