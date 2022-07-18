@@ -1,10 +1,11 @@
 import PizzaItem from "../pizzaItem/PizzaItem";
+import pizzas from "../../assets/pizzas.json";
 
 const PizzaItems = () => {
   return (
     <div className="content__items">
-      {[1, 2, 3].map((item) => {
-        return <PizzaItem />;
+      {pizzas.map((item) => {
+        return <PizzaItem key={item.id} {...item} />;
       })}
     </div>
   );
