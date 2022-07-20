@@ -1,7 +1,6 @@
 import PizzaItem from "../pizzaItem/PizzaItem";
-import pizzas from "../../assets/pizzas.json";
 
-const PizzaItems = () => {
+const PizzaItems = ({ pizzas }) => {
   return (
     <div className="content__items">
       {pizzas.map((item) => {
