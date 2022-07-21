@@ -1,22 +1,21 @@
-import React from "react";
+// import ContentLoader from "react-content-loader";
 import ContentLoader from "react-content-loader";
 
-const Skeleton = (props) => (
+const Skeleton = () => (
   <ContentLoader
+    className="pizza-block"
     speed={3}
-    width={280}
-    height={441}
-    viewBox="0 0 280 441"
-    backgroundColor="#fe5f1e"
-    foregroundColor="#c4560e"
-    {...props}
+    width={288}
+    height={466}
+    viewBox="0 0 288 466"
+    backgroundColor="#f3f3f3"
+    foregroundColor="#ecebeb"
   >
-    <rect x="48" y="8" rx="3" ry="3" width="88" height="6" />
-    <rect x="48" y="26" rx="3" ry="3" width="52" height="6" />
-    <rect x="0" y="56" rx="3" ry="3" width="410" height="6" />
-    <rect x="0" y="72" rx="3" ry="3" width="380" height="6" />
-    <rect x="0" y="88" rx="3" ry="3" width="178" height="6" />
-    <circle cx="20" cy="20" r="20" />
+    <circle cx="139" cy="122" r="120" />
+    <rect x="4" y="269" rx="10" ry="10" width="280" height="30" />
+    <rect x="4" y="315" rx="10" ry="10" width="280" height="58" />
+    <rect x="4" y="389" rx="10" ry="10" width="118" height="30" />
+    <rect x="129" y="383" rx="25" ry="25" width="152" height="45" />
   </ContentLoader>
 );
 
