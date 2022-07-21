@@ -9,17 +9,6 @@ const usePizzalService = () => {
     const res = await request(`${_apiBase}`);
     return res;
   };
-  const _transformCharacter = (char) => {
-    return {
-      name: char.name,
-      nickname: char.nickname,
-      thumbnail: char.img,
-      charID: char.char_id,
-      portrayed: char.portrayed,
-      status: char.status,
-      clazz: "char__item",
-    };
-  };
   return {
     error,
     loading,

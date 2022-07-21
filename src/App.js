@@ -7,19 +7,26 @@ import usePizzalService from "./services/PizzaService";
 
 function App() {
   const [pizzas, setPizzas] = React.useState([]);
-  const { getAllPizzas, loading, error } = usePizzalService();
-  const onRequest = (initial) => {
-    getAllPizzas().then(onPizzasLoaded);
-  };
+  // const { getAllPizzas, loading, error } = usePizzalService();
+  // const onRequest = (initial) => {
+  //   getAllPizzas().then(onPizzasLoaded);
+  // };
 
-  const onPizzasLoaded = (res) => {
-    console.log(res);
-    setPizzas(res);
-  };
+  // const onPizzasLoaded = (res) => {
+  //   console.log(res);
+  //   setPizzas(res);
+  // };
 
+  const request = () => {
+    fetch("https://62d838df9c8b5185c78591dc.mockapi.io/pizzas")
+      .then((res) => res.json())
+      .then((json) => setPizzas(json));
+  };
   React.useEffect(() => {
-    onRequest(true);
+    // onRequest(true);
+    request();
   }, []);
+
   return (
     <div className="wrapper">
       <Header />

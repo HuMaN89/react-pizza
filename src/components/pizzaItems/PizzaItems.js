@@ -1,13 +1,17 @@
 import PizzaItem from "../pizzaItem/PizzaItem";
+import Skeleton from "../skeleton/Skeleton";
 
 const PizzaItems = ({ pizzas }) => {
-  return (
-    <div className="content__items">
-      {pizzas.map((item) => {
+  const elements = () => {
+    if (pizzas) {
+      return pizzas.map((item) => {
         return <PizzaItem key={item.id} {...item} />;
-      })}
-    </div>
-  );
+      });
+    } else {
+      return <Skeleton />;
+    }
+  };
+  return <div className="content__items">{elements}</div>;
 };
 
 export default PizzaItems;
