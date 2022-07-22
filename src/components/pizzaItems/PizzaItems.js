@@ -3,7 +3,7 @@ import Skeleton from "../skeleton/Skeleton";
 
 const PizzaItems = ({ pizzas, loading }) => {
   const skeletonCount = 10;
-  const renderHeroesList = (arr) => {
+  const renderList = (arr) => {
     return (
       <>
         {arr.map((item) => {
@@ -12,7 +12,7 @@ const PizzaItems = ({ pizzas, loading }) => {
       </>
     );
   };
-  const elements = renderHeroesList(pizzas);
+  const elements = renderList(pizzas);
   return (
     <div className="content__items">
       {loading
