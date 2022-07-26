@@ -17,13 +17,16 @@ const Home = () => {
   React.useEffect(() => {
     // onRequest(true);
     request();
+    window.scrollTo(0, 0);
   }, []);
 
   return (
     <>
-      <ContentMenu />
-      <h2 className="content__title">Все пиццы</h2>
-      <PizzaItems pizzas={pizzas} loading={loading} />
+      <div className="container">
+        <ContentMenu />
+        <h2 className="content__title">Все пиццы</h2>
+        <PizzaItems pizzas={pizzas} loading={loading} />
+      </div>
     </>
   );
 };
