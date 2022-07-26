@@ -44,6 +44,32 @@ body {
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
+
+    @media (max-width: 1290px) {
+      flex-direction: column-reverse;
+      .categories {
+        margin-top: 30px;
+      }
+    }
+    @media (max-width: 1290px) {
+      .categories {
+        overflow: hidden;
+        ul {
+          width: 100%;
+        }
+      }
+    }
+    @media (max-width: 1000px) {
+      overflow: scroll;
+      overflow-y: hidden;
+      .categories {
+        width: 850px;
+        overflow: hidden;
+        ul {
+          width: 100%;
+        }
+      }
+    }
   }
 }
 

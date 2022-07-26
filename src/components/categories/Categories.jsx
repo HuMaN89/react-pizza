@@ -15,7 +15,7 @@ const Categories = () => {
   };
   return (
     <div className="categories">
-      <ul className="active">
+      <ul>
         {categories.map((item, idx) => {
           return (
             <li

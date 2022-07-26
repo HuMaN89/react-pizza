@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Card = () => {
   return (
     <div className="container container--cart">
@@ -390,8 +392,8 @@ const Card = () => {
             </span>
           </div>
           <div className="cart__bottom-buttons">
-            <a
-              href="/"
+            <Link
+              to="/"
               className="button button--outline button--add go-back-btn"
             >
               <svg
@@ -411,7 +413,7 @@ const Card = () => {
               </svg>
 
               <span>Вернуться назад</span>
-            </a>
+            </Link>
             <div className="button pay-btn">
               <span>Оплатить сейчас</span>
             </div>
