@@ -1,5 +1,5 @@
 import React from "react";
-const Categories = () => {
+const Categories = ({ activeCategory, setActiveCateory }) => {
   const categories = [
     "Все",
     "Мясные",
@@ -8,7 +8,6 @@ const Categories = () => {
     "Острые",
     "Закрытые",
   ];
-  const [activeCategory, setActiveCateory] = React.useState(0);
 
   const onClickCategoryChange = (index) => {
     setActiveCateory(index);

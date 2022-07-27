@@ -1,8 +1,14 @@
 import React from "react";
-const Sort = () => {
-  const sortList = ["популярности", "цене", "алфавиту"];
+const Sort = ({ activeSort, setActiveSort }) => {
+  const sortList = [
+    "популярности 🠕",
+    "популярности 🠓",
+    "алфавиту 🠕",
+    "алфавиту 🠓",
+    "цене 🠕",
+    "цене 🠓",
+  ];
   const [isVisiblePop, setIsVisiblePop] = React.useState(false);
-  const [activeSort, setActiveSort] = React.useState(2);
 
   const onChangeActiveSort = (e) => {
     setActiveSort(e);
