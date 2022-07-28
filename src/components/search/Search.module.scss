@@ -1,0 +1,40 @@
+.search {
+  position: relative;
+  margin-left: auto;
+  margin-right: 45px;
+}
+.input {
+  width: 300px;
+  border-radius: 30px;
+  border: none;
+  padding: 15px;
+  padding-left: 35px;
+  padding-right: 55px;
+  background-color: #fe5f1e;
+  color: white;
+  transition: all 0.5s linear;
+  &:focus {
+    width: 400px;
+
+    border: 1px solid #fe5f1e;
+    background-color: white;
+    color: #fe5f1e;
+  }
+  @media (max-width: 1290px) {
+    width: 300px;
+    &:focus {
+      width: 400px;
+    }
+  }
+}
+.icon {
+  cursor: pointer;
+  position: absolute;
+  right: 25px;
+  top: 8px;
+  opacity: 0.5;
+  width: 24px;
+  height: 24px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}

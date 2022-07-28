@@ -1,5 +1,6 @@
 import Logo from "../../assets/img/pizza-logo.svg";
 import { NavLink } from "react-router-dom";
+import Search from "../search/Search";
 
 const Header = () => {
   return (
@@ -12,6 +13,7 @@ const Header = () => {
             <p>самая вкусная пицца во вселенной</p>
           </div>
         </div>
+        <Search />
         <div className="header__cart">
           <NavLink to="/card" className="button button--cart">
             <span>520 ₽</span>
