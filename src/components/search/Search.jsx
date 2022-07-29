@@ -1,12 +1,19 @@
 import style from "./Search.module.scss";
-const Search = () => {
+const Search = ({ setFilter }) => {
+  const onChangeFilter = (e) => {
+    e.target.value ? setFilter(e.target.value) : setFilter("all");
+  };
   return (
     <div className={style.search}>
-      <input placeholder="Поиск" className={style.input} />
+      <input
+        placeholder="Поиск"
+        className={style.input}
+        onChange={onChangeFilter}
+      />
 
       <svg
         className={style.icon}
-        enable-background="new 0 0 32 32"
+        enableBackground="new 0 0 32 32"
         id="Glyph"
         version="1.1"
         viewBox="0 0 32 32"

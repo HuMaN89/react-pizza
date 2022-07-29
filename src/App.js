@@ -10,22 +10,14 @@ import Page404 from "./pages/Page404";
 import { Routes, Route } from "react-router-dom";
 
 function App() {
-  // const { getAllPizzas, loading, error } = usePizzalService();
-  // const onRequest = (initial) => {
-  //   getAllPizzas().then(onPizzasLoaded);
-  // };
-
-  // const onPizzasLoaded = (res) => {
-  //   console.log(res);
-  //   setPizzas(res);
-  // };
+  const [filter, setFilter] = React.useState("all");
 
   return (
     <div className="wrapper">
-      <Header />
+      <Header setFilter={setFilter} />
       <div className="content">
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home filter={filter} />} />
           <Route path="/card" element={<Card />} />
           <Route path="*" element={<Page404 />} />
         </Routes>
