@@ -1,9 +1,12 @@
 import React from "react";
+import { SearchContext } from "../App";
 import ContentMenu from "../components/contentMenu/ContentMenu";
 import Pagination from "../components/pagination/Pagination";
 import PizzaItems from "../components/pizzaItems/PizzaItems";
 
-const Home = ({ filter }) => {
+const Home = () => {
+  const { filter } = React.useContext(SearchContext);
+
   const [pizzas, setPizzas] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
   const [activeCategory, setActiveCateory] = React.useState(0);

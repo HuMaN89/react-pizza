@@ -2,7 +2,7 @@ import Logo from "../../assets/img/pizza-logo.svg";
 import { NavLink } from "react-router-dom";
 import Search from "../search/Search";
 
-const Header = ({ setFilter }) => {
+const Header = () => {
   return (
     <div className="header">
       <div className="container">
@@ -13,7 +13,7 @@ const Header = ({ setFilter }) => {
             <p>самая вкусная пицца во вселенной</p>
           </div>
         </div>
-        <Search setFilter={setFilter} />
+        <Search />
         <div className="header__cart">
           <NavLink to="/card" className="button button--cart">
             <span>520 ₽</span>
