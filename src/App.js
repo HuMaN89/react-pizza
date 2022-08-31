@@ -9,19 +9,22 @@ import Page404 from "./pages/Page404";
 
 import { Routes, Route } from "react-router-dom";
 
+export const SearchContext = React.createContext("");
 function App() {
   const [filter, setFilter] = React.useState("all");
 
   return (
     <div className="wrapper">
-      <Header setFilter={setFilter} />
-      <div className="content">
-        <Routes>
-          <Route path="/" element={<Home filter={filter} />} />
-          <Route path="/card" element={<Card />} />
-          <Route path="*" element={<Page404 />} />
-        </Routes>
-      </div>
+      <SearchContext.Provider value={{ filter, setFilter }}>
+        <Header />
+        <div className="content">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/card" element={<Card />} />
+            <Route path="*" element={<Page404 />} />
+          </Routes>
+        </div>
+      </SearchContext.Provider>
     </div>
   );
 }

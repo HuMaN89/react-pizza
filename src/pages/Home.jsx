@@ -1,29 +1,49 @@
 import React from "react";
+import { SearchContext } from "../App";
 import ContentMenu from "../components/contentMenu/ContentMenu";
+import Pagination from "../components/pagination/Pagination";
 import PizzaItems from "../components/pizzaItems/PizzaItems";
 
-const Home = ({ filter }) => {
+const Home = () => {
+  const { filter } = React.useContext(SearchContext);
+
   const [pizzas, setPizzas] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
   const [activeCategory, setActiveCateory] = React.useState(0);
   const [activeSort, setActiveSort] = React.useState(0);
+  const [currentPage, setCurrentPage] = React.useState(1);
   const [visibleData, setVisibleData] = React.useState([]);
   let category = "";
   let sort = "";
   if (activeCategory !== 0) {
     category = `&category=${activeCategory}`;
   }
-  const chose = {
-    0: "?sortBy=rating&order=inc",
-    1: "?sortBy=rating&order=desc",
-    2: "?sortBy=name&order=inc",
-    3: "?sortBy=name&order=desc",
-    4: "?sortBy=price&order=inc",
-    5: "?sortBy=price&order=desc",
-  };
+  switch (activeSort) {
+    case 0:
+      sort = "sortBy=rating&order=inc";
+      break;
+    case 1:
+      sort = "sortBy=rating&order=desc";
+      break;
+    case 2:
+      sort = "sortBy=name&order=inc";
+      break;
+    case 3:
+      sort = "sortBy=name&order=desc";
+      break;
+    case 4:
+      sort = "sortBy=price&order=inc";
+      break;
+    case 5:
+      sort = "sortBy=price&order=desc";
+      break;
+    default:
+      sort = "sortBy=name&order=inc";
+      break;
+  }
   const request = () => {
     fetch(
-      `https://62d838df9c8b5185c78591dc.mockapi.io/pizzas${chose[activeSort]}${category}`
+      `https://62d838df9c8b5185c78591dc.mockapi.io/pizzas?page=${currentPage}&limit=4&${sort}${category}`
     )
       .then((res) => res.json())
       .then((json) => {
@@ -36,19 +56,20 @@ const Home = ({ filter }) => {
     // onRequest(true);
     request();
     window.scrollTo(0, 0);
-  }, [activeCategory, activeSort]);
+  }, [activeCategory, activeSort, currentPage]);
 
   React.useEffect(() => {
-    if (filter !== "all") {
-      setVisibleData((pizzas) => {
+    if (filter === "all") {
+      setVisibleData(pizzas);
+    } else {
+      setVisibleData(() => {
         return pizzas.filter((pizza) => {
-          return pizza.name.indexOf(filter) !== -1;
+          return pizza.name.toLowerCase().indexOf(filter.toLowerCase()) !== -1;
         });
       });
-    } else {
-      setVisibleData(pizzas);
     }
   }, [filter]);
+
   return (
     <>
       <div className="container">
@@ -61,6 +82,7 @@ const Home = ({ filter }) => {
         <h2 className="content__title">Все пиццы</h2>
         <PizzaItems pizzas={visibleData} loading={loading} />
       </div>
+      <Pagination onChangePage={setCurrentPage} />
     </>
   );
 };

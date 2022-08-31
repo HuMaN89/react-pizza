@@ -1,5 +1,8 @@
+import React from "react";
+import { SearchContext } from "../../App";
 import style from "./Search.module.scss";
-const Search = ({ setFilter }) => {
+const Search = () => {
+  const { setFilter } = React.useContext(SearchContext);
   const onChangeFilter = (e) => {
     e.target.value ? setFilter(e.target.value) : setFilter("all");
   };
