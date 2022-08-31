@@ -13,32 +13,17 @@ const Home = ({ filter }) => {
   if (activeCategory !== 0) {
     category = `&category=${activeCategory}`;
   }
-  switch (activeSort) {
-    case 0:
-      sort = "?sortBy=rating&order=inc";
-      break;
-    case 1:
-      sort = "?sortBy=rating&order=desc";
-      break;
-    case 2:
-      sort = "?sortBy=name&order=inc";
-      break;
-    case 3:
-      sort = "?sortBy=name&order=desc";
-      break;
-    case 4:
-      sort = "?sortBy=price&order=inc";
-      break;
-    case 5:
-      sort = "?sortBy=price&order=desc";
-      break;
-    default:
-      sort = "?sortBy=name&order=inc";
-      break;
-  }
+  const chose = {
+    0: "?sortBy=rating&order=inc",
+    1: "?sortBy=rating&order=desc",
+    2: "?sortBy=name&order=inc",
+    3: "?sortBy=name&order=desc",
+    4: "?sortBy=price&order=inc",
+    5: "?sortBy=price&order=desc",
+  };
   const request = () => {
     fetch(
-      `https://62d838df9c8b5185c78591dc.mockapi.io/pizzas${sort}${category}`
+      `https://62d838df9c8b5185c78591dc.mockapi.io/pizzas${chose[activeSort]}${category}`
     )
       .then((res) => res.json())
       .then((json) => {
@@ -64,10 +49,6 @@ const Home = ({ filter }) => {
       setVisibleData(pizzas);
     }
   }, [filter]);
-  console.log(filter);
-  console.log(visibleData);
-  console.log(pizzas);
-  console.log("_______________________________________");
   return (
     <>
       <div className="container">
