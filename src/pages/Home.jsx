@@ -3,14 +3,28 @@ import { SearchContext } from "../App";
 import ContentMenu from "../components/contentMenu/ContentMenu";
 import Pagination from "../components/pagination/Pagination";
 import PizzaItems from "../components/pizzaItems/PizzaItems";
+import { useSelector, useDispatch } from "react-redux";
+import { setCategoryId, setSortId } from "../redux/slices/filterSlice";
 
 const Home = () => {
+  const activeCategory = useSelector((state) => state.filter.categoryId);
+  const activeSort = useSelector((state) => state.filter.sortId);
+  const dispatch = useDispatch();
+
+  const changeCategoryId = (id) => {
+    dispatch(setCategoryId(id));
+  };
+  const changeSortId = (id) => {
+    dispatch(setSortId(id));
+  };
+
   const { filter } = React.useContext(SearchContext);
+  const setActiveCateory = () => {};
 
   const [pizzas, setPizzas] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
-  const [activeCategory, setActiveCateory] = React.useState(0);
-  const [activeSort, setActiveSort] = React.useState(0);
+  // const [activeCategory, setActiveCateory] = React.useState(0);
+  // const [activeSort, setActiveSort] = React.useState(0);
   const [currentPage, setCurrentPage] = React.useState(1);
   const [visibleData, setVisibleData] = React.useState([]);
   let category = "";
@@ -75,9 +89,9 @@ const Home = () => {
       <div className="container">
         <ContentMenu
           activeCategory={activeCategory}
-          setActiveCateory={setActiveCateory}
+          setActiveCateory={changeCategoryId}
           activeSort={activeSort}
-          setActiveSort={setActiveSort}
+          setActiveSort={changeSortId}
         />
         <h2 className="content__title">Все пиццы</h2>
         <PizzaItems pizzas={visibleData} loading={loading} />
