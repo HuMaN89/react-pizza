@@ -1,18 +1,62 @@
 import React from "react";
 import { SearchContext } from "../../App";
+import debounce from "lodash.debounce";
 import style from "./Search.module.scss";
+
 const Search = () => {
-  const { setFilter } = React.useContext(SearchContext);
+  const { filter, setFilter } = React.useContext(SearchContext);
+  const inputRef = React.useRef();
+
+  const testDebounce = React.useCallback(
+    debounce((e) => {
+      console.log("debounce");
+    }, 1500),
+    []
+  );
+
   const onChangeFilter = (e) => {
     e.target.value ? setFilter(e.target.value) : setFilter("all");
+    testDebounce();
+  };
+  const clearFilter = (e) => {
+    e.target.value = "";
+    inputRef.current.focus();
+    setFilter("all");
+  };
+  const styles = {
+    opacity: filter !== "all" ? "1" : "0",
+    right: filter !== "all" ? "15px" : "-25px",
   };
   return (
     <div className={style.search}>
       <input
+        ref={inputRef}
         placeholder="Поиск"
         className={style.input}
         onChange={onChangeFilter}
+        value={filter === "all" ? "" : filter}
       />
+      <svg
+        style={styles}
+        className={style.close}
+        onClick={clearFilter}
+        width="24px"
+        height="24px"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <g data-name="Layer 2">
+          <g data-name="close">
+            <rect
+              width="24"
+              height="24"
+              transform="rotate(180 12 12)"
+              opacity="0"
+            />
+            <path d="M13.41 12l4.3-4.29a1 1 0 1 0-1.42-1.42L12 10.59l-4.29-4.3a1 1 0 0 0-1.42 1.42l4.3 4.29-4.3 4.29a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l4.29-4.3 4.29 4.3a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42z" />
+          </g>
+        </g>
+      </svg>
 
       <svg
         className={style.icon}

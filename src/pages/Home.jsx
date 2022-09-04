@@ -5,6 +5,7 @@ import Pagination from "../components/pagination/Pagination";
 import PizzaItems from "../components/pizzaItems/PizzaItems";
 import { useSelector, useDispatch } from "react-redux";
 import { setCategoryId, setSortId } from "../redux/slices/filterSlice";
+import axios from "axios";
 
 const Home = () => {
   const activeCategory = useSelector((state) => state.filter.categoryId);
@@ -56,13 +57,13 @@ const Home = () => {
       break;
   }
   const request = () => {
-    fetch(
-      `https://62d838df9c8b5185c78591dc.mockapi.io/pizzas?page=${currentPage}&limit=4&${sort}${category}`
-    )
-      .then((res) => res.json())
-      .then((json) => {
-        setPizzas(json);
-        setVisibleData(json);
+    axios
+      .get(
+        `https://62d838df9c8b5185c78591dc.mockapi.io/pizzas?page=${currentPage}&limit=4&${sort}${category}`
+      )
+      .then((res) => {
+        setPizzas(res.data);
+        setVisibleData(res.data);
         setLoading(false);
       });
   };
